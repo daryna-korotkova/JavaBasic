@@ -10,36 +10,36 @@ public class UniversityPrintService {
 
     public void printStructure(University university) {
         System.out.println("\n" + "=".repeat(80));
-        System.out.println("УНІВЕРСИТЕТ: " + university.getName() +
-                " (Ректор: " + university.getHead() + ")");
+        System.out.println("UNIVERSITY: " + university.getName() +
+                " (Rector: " + university.getHead() + ")");
         System.out.println("=".repeat(80));
 
         for (Faculty faculty : university.getFaculties()) {
-            System.out.println("  ФАКУЛЬТЕТ: " + faculty.getName() +
-                    " (Декан: " + faculty.getHead() + ")");
+            System.out.println("  FACULTY: " + faculty.getName() +
+                    " (Dean: " + faculty.getHead() + ")");
             System.out.println("  " + "-".repeat(76));
 
             for (Department department : faculty.getDepartments()) {
-                System.out.println("    КАФЕДРА: " + department.getName() +
-                        " (Зав. Кафедри: " + department.getHead() + ")");
+                System.out.println("    DEPARTMENT: " + department.getName() +
+                        " (Head of Dept: " + department.getHead() + ")");
                 System.out.println("    " + "-".repeat(72));
 
                 for (Group group : department.getGroups()) {
-                    System.out.println("      ГРУПА: " + group.getName() +
-                            " (Куратор: " + group.getHead() + ")");
+                    System.out.println("      GROUP: " + group.getName() +
+                            " (Curator: " + group.getHead() + ")");
 
                     if (!group.getStudents().isEmpty()) {
-                        System.out.println("        Студенти (" + group.getStudents().size() + "):");
+                        System.out.println("        Students (" + group.getStudents().size() + "):");
                         for (Student student : group.getStudents()) {
                             System.out.println("          - " + student);
                         }
                     } else {
-                        System.out.println("        (Студенти відсутні)");
+                        System.out.println("        (Students absent)");
                     }
                     System.out.println("      " + "~".repeat(30));
                 }
             }
         }
-        System.out.println("\n" + "Виведення структури завершено.");
+        System.out.println("\n" + "Structure output finished.");
     }
 }

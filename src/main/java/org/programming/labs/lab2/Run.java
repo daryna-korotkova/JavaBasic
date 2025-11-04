@@ -16,7 +16,7 @@ public class Run {
         University university = universityCreator.createTypicalUniversity("Dnipro University of Technology");
 
         UniversityPrintService printService = new UniversityPrintService();
-        System.out.println("Об'єкт Університет успішно створено!");
+        System.out.println("The University object has been successfully created!");
         printService.printStructure(university);
     }
 }
