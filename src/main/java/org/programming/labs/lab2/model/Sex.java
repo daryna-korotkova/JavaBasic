@@ -1,4 +1,4 @@
-package org.programming.labs.Lab2.model;
+package org.programming.labs.lab2.model;
 
 public enum Sex {
     MALE,
