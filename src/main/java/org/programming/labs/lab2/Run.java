@@ -2,7 +2,7 @@ package org.programming.labs.lab2;
 
 import org.programming.labs.lab2.controller.*;
 import org.programming.labs.lab2.model.University;
-import org.programming.labs.lab2.view.UniversityPrintService; // Імпорт нового класу
+import org.programming.labs.lab2.view.UniversityPrintService;
 
 public class Run {
 
@@ -16,7 +16,6 @@ public class Run {
         University university = universityCreator.createTypicalUniversity("Dnipro University of Technology");
 
         UniversityPrintService printService = new UniversityPrintService();
-        System.out.println("The University object has been successfully created!");
         printService.printStructure(university);
     }
 }
