@@ -1,0 +1,117 @@
+{
+  "faculties": [
+    {
+      "departments": [
+        {
+          "groups": [
+            {
+              "students": [
+                {
+                  "firstName": "Dmytro",
+                  "lastName": "Hnatiuk",
+                  "patronymic": "Stepanovych",
+                  "sex": "MALE"
+                },
+                {
+                  "firstName": "Mariia",
+                  "lastName": "Oliynyk",
+                  "patronymic": "Olehivna",
+                  "sex": "FEMALE"
+                }
+              ],
+              "name": "CS-21",
+              "head": {
+                "firstName": "Iryna",
+                "lastName": "Melnyk",
+                "patronymic": "Andriyivna",
+                "sex": "FEMALE"
+              }
+            },
+            {
+              "students": [
+                {
+                  "firstName": "Dmytro",
+                  "lastName": "Hnatiuk",
+                  "patronymic": "Stepanovych",
+                  "sex": "MALE"
+                },
+                {
+                  "firstName": "Mariia",
+                  "lastName": "Oliynyk",
+                  "patronymic": "Olehivna",
+                  "sex": "FEMALE"
+                }
+              ],
+              "name": "CS-22",
+              "head": {
+                "firstName": "Taras",
+                "lastName": "Shevchenko",
+                "patronymic": "Vasyliovych",
+                "sex": "MALE"
+              }
+            }
+          ],
+          "name": "Department of Computer Science",
+          "head": {
+            "firstName": "Serhiy",
+            "lastName": "Koval",
+            "patronymic": "Mykolayovych",
+            "sex": "MALE"
+          }
+        },
+        {
+          "groups": [
+            {
+              "students": [
+                {
+                  "firstName": "Maksym",
+                  "lastName": "Petrenko",
+                  "patronymic": "Serhiyovych",
+                  "sex": "MALE"
+                }
+              ],
+              "name": "SE-21",
+              "head": {
+                "firstName": "Taras",
+                "lastName": "Shevchenko",
+                "patronymic": "Vasyliovych",
+                "sex": "MALE"
+              }
+            }
+          ],
+          "name": "Department of Software Engineering",
+          "head": {
+            "firstName": "Anna",
+            "lastName": "Moroz",
+            "patronymic": "Petrivna",
+            "sex": "FEMALE"
+          }
+        }
+      ],
+      "name": "Faculty of Information Technology",
+      "head": {
+        "firstName": "Olena",
+        "lastName": "Tkachenko",
+        "patronymic": "Ivanivna",
+        "sex": "FEMALE"
+      }
+    },
+    {
+      "departments": [],
+      "name": "Faculty of Economics",
+      "head": {
+        "firstName": "Viktor",
+        "lastName": "Lysenko",
+        "patronymic": "Oleksiyovich",
+        "sex": "MALE"
+      }
+    }
+  ],
+  "name": "Dnipro University of Technology",
+  "head": {
+    "firstName": "Olexandr",
+    "lastName": "Melnyk",
+    "patronymic": "Ivanovich",
+    "sex": "MALE"
+  }
+}
