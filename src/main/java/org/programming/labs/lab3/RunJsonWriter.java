@@ -27,7 +27,7 @@ public class RunJsonWriter {
         try {
             jsonManager.writeUniversityToJsonFile(university, ETALON_FILE_PATH);
         } catch (IOException e) {
-            System.err.println("❌ Error writing university to JSON file: " + e.getMessage());
+            System.err.println("Error writing university to JSON file: " + e.getMessage());
             e.printStackTrace();
         }
     }
