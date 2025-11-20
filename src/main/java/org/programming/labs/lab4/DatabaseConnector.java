@@ -1,84 +1,71 @@
 package org.programming.labs.lab4;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DatabaseConnector {
 
-    private static final String DB_URL = "jdbc:h2:~/test";
-    private static final String USER = "sa";
-    private static final String PASS = "";
+    private static final String DB_URL = "jdbc:h2:~/test"; // URL бази даних (наприклад, H2)
+    private static final String DB_USER = "sa";
+    private static final String DB_PASSWORD = "";
 
-    public Connection connect() {
+    public Connection establishConnection() {
         Connection connection = null;
         try {
-
+            Class.forName("org.h2.Driver");
             System.out.println("Attempting to connect to the database...");
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             System.out.println("Connection successful!");
             return connection;
         } catch (SQLException e) {
-            System.err.println("Connection failed! Check the console output for details.");
+            System.err.println("Connection error! Please check your configuration.");
             e.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException e) {
+            System.err.println("H2 driver not found. Check dependencies.");
             return null;
         }
     }
 
-    public void executeSelectQuery(Connection connection, String sqlQuery) {
+    public QueryResultData executeSelectQuery(Connection connection, String sqlQuery) {
         if (connection == null) {
-            System.err.println("Cannot execute query: Connection is null.");
-            return;
+            System.err.println("The request cannot be fulfilled: no connection available.");
+            return null;
         }
+
+        List<Map<String, String>> rowData = new ArrayList<>();
+        List<String> columnHeaders = new ArrayList<>();
 
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sqlQuery)) {
 
-            System.out.println("\n--- Query Results ---");
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            int columnCount = metaData.getColumnCount();
 
-            int columnCount = resultSet.getMetaData().getColumnCount();
             for (int i = 1; i <= columnCount; i++) {
-                System.out.printf("%-20s |", resultSet.getMetaData().getColumnLabel(i));
+                columnHeaders.add(metaData.getColumnLabel(i));
             }
-            System.out.println("\n------------------------------------------------");
 
             while (resultSet.next()) {
+                Map<String, String> row = new LinkedHashMap<>();
                 for (int i = 1; i <= columnCount; i++) {
-                    System.out.printf("%-20s |", resultSet.getString(i));
+                    String header = columnHeaders.get(i - 1);
+                    String value = resultSet.getString(i);
+                    row.put(header, (value != null) ? value : "NULL");
                 }
-                System.out.println();
+                rowData.add(row);
             }
-            System.out.println("------------------------------------------------\n");
+
+            System.out.println("\n[SQL Query Executed: " + sqlQuery + "]");
+            return new QueryResultData(columnHeaders, rowData);
 
         } catch (SQLException e) {
-            System.err.println("Error executing query: " + e.getMessage());
+            System.err.println("Request execution error: " + e.getMessage());
             e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) {
-        DatabaseConnector connector = new DatabaseConnector();
-        Connection connection = null;
-
-        try {
-            connection = connector.connect();
-
-            if (connection != null) {
-                String query = "SELECT student_id, first_name, last_name, date_of_birth FROM students LIMIT 5;";
-                connector.executeSelectQuery(connection, query);
-            }
-
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                    System.out.println("Connection closed successfully.");
-                } catch (SQLException e) {
-                    System.err.println("Error closing connection: " + e.getMessage());
-                }
-            }
+            return null;
         }
     }
 }
